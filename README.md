@@ -6,9 +6,8 @@ Basically, we can make system more backwards compatible for old D3D even DDraw a
 
 Generally, a GNU/Linux is required for building WineD3D. While you can build this WineD3DBridge on Windows natively using Visual Studio, with native D3DSDK and Windows platform SDK, and you even don't need to download any 3rd party library.
 
-Instruction
------------
-
+Usage
+-----
 - Build WineD3DBridge.
 - Copy generated wind3d.dll and d3dx dlls (eg: d3d8.dll, d3d9.dll, etc.) to applications directory.
 - Run application.
@@ -22,6 +21,10 @@ Snapshot
 <img width="338" src="sample.png" />
 <img width="389" src="stack.png" />
 
+Known issues
+------------
+- dx5-8, dx10 and later not supported for now
+
 Thanks and more
 ---------------
-I borrowed many code from WineD3D, thanks to the wine team, and you get more information there: https://www.winehq.org/
+I borrowed much code from WineD3D, thanks to the wine team, and you can get more information here: https://www.winehq.org/

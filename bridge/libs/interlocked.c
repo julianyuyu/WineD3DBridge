@@ -137,7 +137,55 @@ __ASM_GLOBAL_FUNC(interlocked_xchg_add,
 #endif
 
 #elif defined(__x86_64__)
-#if 0
+
+#if defined(_MSC_VER)
+
+#include <windows.h>
+static CRITICAL_SECTION g_sec;
+//	static pthread_mutex_t interlocked_mutex = PTHREAD_MUTEX_INITIALIZER;
+
+int interlocked_cmpxchg(int *dest, int xchg, int compare)
+{
+	InitializeCriticalSection(&g_sec);
+	EnterCriticalSection(&g_sec);
+	if (*dest == compare)
+		*dest = xchg;
+	else
+		compare = *dest;
+
+	LeaveCriticalSection(&g_sec);
+	DeleteCriticalSection(&g_sec);
+	return compare;
+}
+
+void *interlocked_cmpxchg_ptr(void **dest, void *xchg, void *compare)
+{
+	InitializeCriticalSection(&g_sec);
+	EnterCriticalSection(&g_sec);
+	if (*dest == compare)
+		*dest = xchg;
+	else
+		compare = *dest;
+
+	LeaveCriticalSection(&g_sec);
+	DeleteCriticalSection(&g_sec);
+	return compare;
+}
+
+int interlocked_xchg_add(int *dest, int incr)
+{
+	int retv;
+	InitializeCriticalSection(&g_sec);
+	EnterCriticalSection(&g_sec);
+	retv = *dest;
+	*dest += incr;
+	LeaveCriticalSection(&g_sec);
+	DeleteCriticalSection(&g_sec);
+	return retv;
+}
+
+#else
+
 __ASM_GLOBAL_FUNC(interlocked_cmpxchg,
                   "mov %edx, %eax\n\t"
                   "lock cmpxchgl %esi,(%rdi)\n\t"
@@ -179,53 +227,7 @@ __ASM_GLOBAL_FUNC(interlocked_cmpxchg128,
                   __ASM_CFI(".cfi_adjust_cfa_offset -8\n\t")
                   __ASM_CFI(".cfi_same_value %rbx\n\t")
                   "ret")
-
-#else
-
-#include <windows.h>
-static CRITICAL_SECTION g_sec;
-//	static pthread_mutex_t interlocked_mutex = PTHREAD_MUTEX_INITIALIZER;
-
-int interlocked_cmpxchg(int *dest, int xchg, int compare)
-{
-	InitializeCriticalSection(&g_sec);
-	EnterCriticalSection(&g_sec);
-	if (*dest == compare)
-		*dest = xchg;
-	else
-		compare = *dest;
-
-	LeaveCriticalSection(&g_sec);
-	DeleteCriticalSection(&g_sec);
-	return compare;
-}
 #endif
-
-void *interlocked_cmpxchg_ptr(void **dest, void *xchg, void *compare)
-{
-	InitializeCriticalSection(&g_sec);
-	EnterCriticalSection(&g_sec);
-	if (*dest == compare)
-		*dest = xchg;
-	else
-		compare = *dest;
-
-	LeaveCriticalSection(&g_sec);
-	DeleteCriticalSection(&g_sec);
-	return compare;
-}
-
-int interlocked_xchg_add(int *dest, int incr)
-{
-	int retv;
-	InitializeCriticalSection(&g_sec);
-	EnterCriticalSection(&g_sec);
-	retv = *dest;
-	*dest += incr;
-	LeaveCriticalSection(&g_sec);
-	DeleteCriticalSection(&g_sec);
-	return retv;
-}
 
 #elif defined(__powerpc__)
 

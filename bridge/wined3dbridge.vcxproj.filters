@@ -16,7 +16,7 @@
     <Filter Include="wine">
       <UniqueIdentifier>{97cec7b3-a3e8-45dc-9765-7193d9eaa386}</UniqueIdentifier>
     </Filter>
-    <Filter Include="wine\lib">
+    <Filter Include="wine\libs">
       <UniqueIdentifier>{7943fcf5-770d-40e5-bdf0-6fa7ce14ec64}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -33,12 +33,15 @@
     <ClInclude Include="wine\wined3d_private.h">
       <Filter>wine</Filter>
     </ClInclude>
+    <ClInclude Include="..\wine\include\config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wined3d.cpp">
+    <ClCompile Include="wined3dbridge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
@@ -122,14 +125,14 @@
     <ClCompile Include="wine\stateblock.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="lib\debug.c">
-      <Filter>wine\lib</Filter>
+    <ClCompile Include="libs\debug.c">
+      <Filter>wine\libs</Filter>
     </ClCompile>
-    <ClCompile Include="lib\interlocked.c">
-      <Filter>wine\lib</Filter>
+    <ClCompile Include="libs\interlocked.c">
+      <Filter>wine\libs</Filter>
     </ClCompile>
-    <ClCompile Include="lib\ffs.c">
-      <Filter>wine\lib</Filter>
+    <ClCompile Include="libs\ffs.c">
+      <Filter>wine\libs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +141,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="wined3d.def">
+    <None Include="wined3dbridge.def">
       <Filter>Source Files</Filter>
     </None>
   </ItemGroup>

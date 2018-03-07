@@ -1,47 +1,91 @@
-/* include/config.h.  Generated from config.h.in by configure.  */
-/* include/config.h.in.  Generated from configure.ac by autoheader.  */
 
-#ifndef __WINE_CONFIG_H
-#define __WINE_CONFIG_H
-#ifndef WINE_CROSSTEST
+#ifndef __WINE_CONFIG_ON_WINDOWS_H_
+#define __WINE_CONFIG_ON_WINDOWS_H_
+#define __WINE_CONFIG_H	/* define this for wine build checking */
 
-#if 0
+#ifdef WIN32
 #define _X86_
-#define __x86__
-
+#define __i386__
 #else
 #define _AMD64_
 #define __x86_64__
+#endif
 
+#if (defined(WINED3DBRIDGE_EXPORTS) || defined(D3D9_EXPORTS))
+#define DLLEXPORT __declspec(dllexport)
+#else
+#define DLLEXPORT __declspec(dllimport)
 #endif
 
 /* Define to a function attribute for Microsoft hotpatch assembly prefix. */
 //#define DECLSPEC_HOTPATCH __attribute__((__ms_hook_prologue__))
 #define DECLSPEC_HOTPATCH
-//#define WINE_DEFAULT_DEBUG_CHANNEL(x)
 #define DECLSPEC_HIDDEN
+
 #define __WINE_ALLOC_SIZE(x)
 
 #define __WINESRC__
+
+#ifdef __WINESRC__
+#define DLL_WINE_PREATTACH      8       /* called before process attach for Wine builtins */ /*but not used actually*/
+#endif
+
+/* Macros to map Winelib names to the correct implementation name */
+/* Note that Winelib is purely Win32.                             */
+
+#ifdef __WINESRC__
+#define WINE_NO_UNICODE_MACROS 1
+#define WINE_STRICT_PROTOTYPES 1
+#endif
+
+#ifdef WINE_NO_UNICODE_MACROS
+# define WINELIB_NAME_AW(func) \
+    func##_must_be_suffixed_with_W_or_A_in_this_context \
+    func##_must_be_suffixed_with_W_or_A_in_this_context
+#else  /* WINE_NO_UNICODE_MACROS */
+# ifdef UNICODE
+#  define WINELIB_NAME_AW(func) func##W
+# else
+#  define WINELIB_NAME_AW(func) func##A
+# endif
+#endif  /* WINE_NO_UNICODE_MACROS */
+
+#ifdef WINE_NO_UNICODE_MACROS
+# define DECL_WINELIB_TYPE_AW(type)  /* nothing */
+#else
+# define DECL_WINELIB_TYPE_AW(type)  typedef WINELIB_NAME_AW(type) type;
+#endif
+
+
 #define USE_WIN32_OPENGL
 
 #undef HAVE___BUILTIN_POPCOUNT
 #undef HAVE___BUILTIN_CLZ
 #undef HAVE_FFS
 
-#define FIXME_JY	0
-#define HAVE_FLOAT_H	1
-//#include "msvcrt\float.h"
+#define FIXME_JY		0
 
 // winuser.h !!!
 #define DCX_USESTYLE         0x00010000
 
 
-#define HAVE_SIZE_T	1
+#define HAVE_FLOAT_H	1
+#define HAVE_SIZE_T		1
 
-#define HAVE_ISFINITE	0
-#define HAVE_ISINF		0
-#define HAVE_ISNAN		0
+#define HAVE_ISFINITE	1
+#define HAVE_ISINF		1
+#define HAVE_ISNAN		1
+#define HAVE_LLRINT		1
+#define HAVE_LLRINTF	1
+#define HAVE_LRINT		1
+#define HAVE_LRINTF		1
+#define HAVE_RINT		1
+#define HAVE_RINTF		1
+#define HAVE_MEMMOVE	1
+
+#define HAVE__STRICMP	1
+#undef HAVE_STRCASECMP
+
 
 /* Define to the file extension for executables. */
 #define EXEEXT ""
@@ -64,7 +108,7 @@
 #define HAVE_STDLIB_H 1
 
 /* Define to 1 if you have the `strcasecmp' function. */
-#define HAVE_STRCASECMP 0
+//#define HAVE_STRCASECMP 0
 
 /* Define to 1 if you have the `strdup' function. */
 #define HAVE_STRDUP 1
@@ -79,7 +123,7 @@
 #define HAVE_STRING_H 1
 
 /* Define to 1 if you have the `strncasecmp' function. */
-#define HAVE_STRNCASECMP 0
+//#define HAVE_STRNCASECMP 0
 
 /* Define to 1 if you have the `strnlen' function. */
 #define HAVE_STRNLEN 1
@@ -132,87 +176,6 @@
 
 /* Define to 1 if you have the `vsnprintf' function. */
 #define HAVE_VSNPRINTF 1
-
-/* Define to 1 if you have the <X11/extensions/shape.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_SHAPE_H */
-
-/* Define to 1 if you have the <X11/extensions/Xcomposite.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XCOMPOSITE_H */
-
-/* Define to 1 if you have the <X11/extensions/xf86vmode.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XF86VMODE_H */
-
-/* Define to 1 if you have the <X11/extensions/xf86vmproto.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XF86VMPROTO_H */
-
-/* Define to 1 if you have the <X11/extensions/Xfixes.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XFIXES_H */
-
-/* Define to 1 if you have the <X11/extensions/Xinerama.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XINERAMA_H */
-
-/* Define to 1 if you have the <X11/extensions/XInput2.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XINPUT2_H */
-
-/* Define to 1 if you have the <X11/extensions/XInput.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XINPUT_H */
-
-/* Define to 1 if you have the <X11/extensions/Xrandr.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XRANDR_H */
-
-/* Define to 1 if you have the <X11/extensions/Xrender.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XRENDER_H */
-
-/* Define to 1 if you have the <X11/extensions/XShm.h> header file. */
-/* #undef HAVE_X11_EXTENSIONS_XSHM_H */
-
-/* Define to 1 if you have the <X11/Xcursor/Xcursor.h> header file. */
-/* #undef HAVE_X11_XCURSOR_XCURSOR_H */
-
-/* Define to 1 if you have the <X11/XKBlib.h> header file. */
-/* #undef HAVE_X11_XKBLIB_H */
-
-/* Define to 1 if you have the <X11/Xlib.h> header file. */
-/* #undef HAVE_X11_XLIB_H */
-
-/* Define to 1 if you have the <X11/Xutil.h> header file. */
-/* #undef HAVE_X11_XUTIL_H */
-
-/* Define to 1 if `xcookie' is a member of `XEvent'. */
-/* #undef HAVE_XEVENT_XCOOKIE */
-
-/* Define to 1 if `callback' is a member of `XICCallback'. */
-/* #undef HAVE_XICCALLBACK_CALLBACK */
-
-/* Define if you have the XKB extension */
-/* #undef HAVE_XKB */
-
-/* Define if libxml2 has the xmlDocProperties enum */
-/* #undef HAVE_XMLDOC_PROPERTIES */
-
-/* Define if libxml2 has the xmlFirstElementChild function */
-/* #undef HAVE_XMLFIRSTELEMENTCHILD */
-
-/* Define if libxml2 has the xmlNewDocPI function */
-/* #undef HAVE_XMLNEWDOCPI */
-
-/* Define if libxml2 has the xmlReadMemory function */
-/* #undef HAVE_XMLREADMEMORY */
-
-/* Define if libxml2 has the xmlSchemaSetParserStructuredErrors function */
-/* #undef HAVE_XMLSCHEMASSETPARSERSTRUCTUREDERRORS */
-
-/* Define if libxml2 has the xmlSchemaSetValidStructuredErrors function */
-/* #undef HAVE_XMLSCHEMASSETVALIDSTRUCTUREDERRORS */
-
-/* Define if Xrender has the XRenderCreateLinearGradient function */
-/* #undef HAVE_XRENDERCREATELINEARGRADIENT */
-
-/* Define if Xrender has the XRenderSetPictureTransform function */
-/* #undef HAVE_XRENDERSETPICTURETRANSFORM */
-
-/* Define if Xrandr has the XRRGetScreenResources function */
-/* #undef HAVE_XRRGETSCREENRESOURCES */
 
 /* Define to 1 if you have the `y0' function. */
 #define HAVE_Y0 0
@@ -307,133 +270,8 @@
 /* Define to the version of this package. */
 #define PACKAGE_VERSION "3.3"
 
-/* Define to the soname of the libcapi20 library. */
-/* #undef SONAME_LIBCAPI20 */
-
-/* Define to the soname of the libcups library. */
-/* #undef SONAME_LIBCUPS */
-
-/* Define to the soname of the libcurses library. */
-/* #undef SONAME_LIBCURSES */
-
-/* Define to the soname of the libdbus-1 library. */
-/* #undef SONAME_LIBDBUS_1 */
-
-/* Define to the soname of the libEGL library. */
-/* #undef SONAME_LIBEGL */
-
-/* Define to the soname of the libfontconfig library. */
-/* #undef SONAME_LIBFONTCONFIG */
-
-/* Define to the soname of the libfreetype library. */
-/* #undef SONAME_LIBFREETYPE */
-
-/* Define to the soname of the libGL library. */
-/* #undef SONAME_LIBGL */
-
-/* Define to the soname of the libGLESv2 library. */
-/* #undef SONAME_LIBGLESV2 */
-
-/* Define to the soname of the libGLU library. */
-/* #undef SONAME_LIBGLU */
-
-/* Define to the soname of the libgnutls library. */
-/* #undef SONAME_LIBGNUTLS */
-
-/* Define to the soname of the libgsm library. */
-/* #undef SONAME_LIBGSM */
-
-/* Define to the soname of the libgssapi_krb5 library. */
-/* #undef SONAME_LIBGSSAPI_KRB5 */
-
-/* Define to the soname of the libhal library. */
-/* #undef SONAME_LIBHAL */
-
-/* Define to the soname of the libjpeg library. */
-/* #undef SONAME_LIBJPEG */
-
-/* Define to the soname of the libkrb5 library. */
-/* #undef SONAME_LIBKRB5 */
-
-/* Define to the soname of the libncurses library. */
-/* #undef SONAME_LIBNCURSES */
-
-/* Define to the soname of the libnetapi library. */
-#define SONAME_LIBNETAPI "libnetapi.so"
-
-/* Define to the soname of the libodbc library. */
-#define SONAME_LIBODBC "libodbc.so"
-
-/* Define to the soname of the libopenal library. */
-/* #undef SONAME_LIBOPENAL */
-
-/* Define to the soname of the libOSMesa library. */
-/* #undef SONAME_LIBOSMESA */
-
-/* Define to the soname of the libpng library. */
-/* #undef SONAME_LIBPNG */
-
-/* Define to the soname of the libsane library. */
-/* #undef SONAME_LIBSANE */
-
-/* Define to the soname of the libSDL2 library. */
-/* #undef SONAME_LIBSDL2 */
-
-/* Define to the soname of the libtiff library. */
-/* #undef SONAME_LIBTIFF */
-
-/* Define to the soname of the libv4l1 library. */
-/* #undef SONAME_LIBV4L1 */
-
-/* Define to the soname of the libvulkan library. */
-/* #undef SONAME_LIBVULKAN */
-
-/* Define to the soname of the libX11 library. */
-/* #undef SONAME_LIBX11 */
-
-/* Define to the soname of the libXcomposite library. */
-/* #undef SONAME_LIBXCOMPOSITE */
-
-/* Define to the soname of the libXcursor library. */
-/* #undef SONAME_LIBXCURSOR */
-
-/* Define to the soname of the libXext library. */
-/* #undef SONAME_LIBXEXT */
-
-/* Define to the soname of the libXfixes library. */
-/* #undef SONAME_LIBXFIXES */
-
-/* Define to the soname of the libXi library. */
-/* #undef SONAME_LIBXI */
-
-/* Define to the soname of the libXinerama library. */
-/* #undef SONAME_LIBXINERAMA */
-
-/* Define to the soname of the libXrandr library. */
-/* #undef SONAME_LIBXRANDR */
-
-/* Define to the soname of the libXrender library. */
-/* #undef SONAME_LIBXRENDER */
-
-/* Define to the soname of the libxslt library. */
-/* #undef SONAME_LIBXSLT */
-
-/* Define to the soname of the libXxf86vm library. */
-/* #undef SONAME_LIBXXF86VM */
-
-/* Define to 1 if the `S_IS*' macros in <sys/stat.h> do not work properly. */
-/* #undef STAT_MACROS_BROKEN */
-
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
-
-/* Define to 1 if the X Window System is missing or not being used. */
-#define X_DISPLAY_MISSING 1
-
-/* Enable large inode numbers on Mac OS X 10.5.  */
-#ifndef _DARWIN_USE_64_BIT_INODE
-# define _DARWIN_USE_64_BIT_INODE 1
-#endif
 
 /* Number of bits in a file offset, on hosts where this is settable. */
 /* #undef _FILE_OFFSET_BITS */
@@ -470,5 +308,4 @@
 /* #undef inline */
 #endif
 
-#endif /* WINE_CROSSTEST */
-#endif /* __WINE_CONFIG_H */
+#endif /* __WINE_CONFIG_ON_WINDOWS_H */

@@ -24,10 +24,10 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\config.h">
+    <ClInclude Include="..\wine\include\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="wine\d3d9\d3d9_private.h">
+    <ClInclude Include="wine\d3d9_private.h">
       <Filter>wine</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,45 +41,45 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\d3d9_main.c">
+    <ClCompile Include="wine\d3d9_main.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\device.c">
+    <ClCompile Include="wine\device.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\directx.c">
+    <ClCompile Include="wine\directx.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\query.c">
+    <ClCompile Include="wine\query.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\shader.c">
+    <ClCompile Include="wine\shader.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\stateblock.c">
+    <ClCompile Include="wine\stateblock.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\surface.c">
+    <ClCompile Include="wine\surface.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\swapchain.c">
+    <ClCompile Include="wine\swapchain.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\texture.c">
+    <ClCompile Include="wine\texture.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\vertexdeclaration.c">
+    <ClCompile Include="wine\vertexdeclaration.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\volume.c">
+    <ClCompile Include="wine\volume.c">
       <Filter>wine</Filter>
     </ClCompile>
-    <ClCompile Include="wine\d3d9\buffer.c">
+    <ClCompile Include="wine\buffer.c">
       <Filter>wine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="wine\d3d9\version.rc">
+    <ResourceCompile Include="wine\version.rc">
       <Filter>wine</Filter>
     </ResourceCompile>
   </ItemGroup>

@@ -71,15 +71,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Configuration)$(Platform)\</OutDir>
+    <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Configuration)$(Platform)\</OutDir>
+    <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Configuration)$(Platform)\</OutDir>
+    <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Configuration)$(Platform)\</OutDir>
+    <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -88,7 +96,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;D3D9_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\wine;..\wine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\wine\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4018;4267;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -105,7 +114,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;D3D9_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\wine;..\wine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\wine\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4018;4267;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -124,7 +134,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;D3D9_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\wine;..\wine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\wine\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4018;4267;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -145,7 +156,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;D3D9_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\wine;..\wine\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\wine\include</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4018;4267;4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -158,10 +170,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\config.h" />
+    <ClInclude Include="..\wine\include\config.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="wine\d3d9\d3d9_private.h" />
+    <ClInclude Include="wine\d3d9_private.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="d3d9.cpp" />
@@ -180,21 +192,21 @@
       </PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="wine\d3d9\buffer.c" />
-    <ClCompile Include="wine\d3d9\d3d9_main.c" />
-    <ClCompile Include="wine\d3d9\device.c" />
-    <ClCompile Include="wine\d3d9\directx.c" />
-    <ClCompile Include="wine\d3d9\query.c" />
-    <ClCompile Include="wine\d3d9\shader.c" />
-    <ClCompile Include="wine\d3d9\stateblock.c" />
-    <ClCompile Include="wine\d3d9\surface.c" />
-    <ClCompile Include="wine\d3d9\swapchain.c" />
-    <ClCompile Include="wine\d3d9\texture.c" />
-    <ClCompile Include="wine\d3d9\vertexdeclaration.c" />
-    <ClCompile Include="wine\d3d9\volume.c" />
+    <ClCompile Include="wine\buffer.c" />
+    <ClCompile Include="wine\d3d9_main.c" />
+    <ClCompile Include="wine\device.c" />
+    <ClCompile Include="wine\directx.c" />
+    <ClCompile Include="wine\query.c" />
+    <ClCompile Include="wine\shader.c" />
+    <ClCompile Include="wine\stateblock.c" />
+    <ClCompile Include="wine\surface.c" />
+    <ClCompile Include="wine\swapchain.c" />
+    <ClCompile Include="wine\texture.c" />
+    <ClCompile Include="wine\vertexdeclaration.c" />
+    <ClCompile Include="wine\volume.c" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="wine\d3d9\version.rc">
+    <ResourceCompile Include="wine\version.rc">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">..\wine\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">..\wine\include</AdditionalIncludeDirectories>
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\wine\include</AdditionalIncludeDirectories>
