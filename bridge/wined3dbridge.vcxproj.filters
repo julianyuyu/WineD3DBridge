@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="wine">
+      <UniqueIdentifier>{97cec7b3-a3e8-45dc-9765-7193d9eaa386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="wine\lib">
+      <UniqueIdentifier>{7943fcf5-770d-40e5-bdf0-6fa7ce14ec64}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wine\wined3d_gl.h">
+      <Filter>wine</Filter>
+    </ClInclude>
+    <ClInclude Include="wine\wined3d_private.h">
+      <Filter>wine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wined3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\surface.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\swapchain.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\texture.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\utils.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\vertexdeclaration.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\view.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\wined3d_main.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\arb_program_shader.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\ati_fragment_shader.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\buffer.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\context.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\cs.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\device.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\directx.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\gl_compat.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\glsl_shader.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\nvidia_texture_shader.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\palette.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\query.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\resource.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\sampler.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\shader.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\shader_sm1.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\shader_sm4.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\state.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="wine\stateblock.c">
+      <Filter>wine</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\debug.c">
+      <Filter>wine\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\interlocked.c">
+      <Filter>wine\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\ffs.c">
+      <Filter>wine\lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="wine\version.rc">
+      <Filter>wine</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wined3d.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -27,6 +27,30 @@
 *.lib
 
 # Executables
-*.exe
+#*.exe
 *.out
 *.app
+
+
+# VS genrated files
+*.aps
+*.pdb
+*.exp
+*.obj
+*.swp
+*.sdf
+*.opendb
+*.VC.db
+*.user
+*.suo
+Debug/
+Release/
+x64/
+Debugx64/
+Releasex64/
+DebugWin32/
+ReleaseWin32/
+ARM/
+Generated Files/
+ipch/
+.vs/
