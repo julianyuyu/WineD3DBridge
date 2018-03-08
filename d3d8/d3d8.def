@@ -1,0 +1,10 @@
+LIBRARY "d3d8"
+
+;DESCRIPTION "d3d8"
+
+EXPORTS
+	D3D8GetSWInfo
+	DebugSetMute
+	Direct3DCreate8
+	ValidateVertexShader
+	ValidatePixelShader

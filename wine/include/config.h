@@ -56,6 +56,15 @@
 # define DECL_WINELIB_TYPE_AW(type)  typedef WINELIB_NAME_AW(type) type;
 #endif
 
+/* Macro to deal with LP64 <=> LLP64 differences in numeric constants with 'l' modifier */
+#ifndef __MSABI_LONG
+# if defined(_MSC_VER) || defined(__MINGW32__) || defined(__CYGWIN__)
+#  define __MSABI_LONG(x)         x ## l
+# else
+#  define __MSABI_LONG(x)         x
+# endif
+#endif
+
 
 #define USE_WIN32_OPENGL
 

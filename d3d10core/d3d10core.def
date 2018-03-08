@@ -1,0 +1,7 @@
+LIBRARY "d3d10core"
+
+;DESCRIPTION "d3d10core"
+
+EXPORTS
+	D3D10CoreCreateDevice
+	D3D10CoreRegisterLayers
