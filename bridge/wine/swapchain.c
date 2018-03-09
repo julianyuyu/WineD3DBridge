@@ -808,13 +808,11 @@ static HRESULT swapchain_init(struct wined3d_swapchain *swapchain, struct wined3
     GetClientRect(window, &client_rect);
 
 	// FIXME_JY
-	// why client_rect.bottom is 0, whiel window_rect.bottom is NOT 0?
+	// if create window with w=0,h=0, then window will be 120 x 0.so change it to be 120x1
+
 	if ((client_rect.bottom - client_rect.top )== 0)
 	{
-		RECT *rc_win = &swapchain->original_window_rect;
-		int h_win = rc_win->bottom - rc_win->top;
-		int w_edge_2 = (rc_win->right - rc_win->left) - (client_rect.right - client_rect.left);
-		client_rect.bottom = client_rect.top + h_win - w_edge_2;
+		client_rect.bottom = client_rect.top + 1;
 	}
 	// end FIXME_JY
 

@@ -26,6 +26,21 @@
 #define D3D11_INIT_GUID
 #include "d3d11_private.h"
 
+//FIXME_JY, should link to wine dxgi, but not d3d11 from DXSDK?
+#if (defined( _DEBUG) || defined(DEBUG))
+#if (defined(_AMD64_))
+#pragma comment (lib, "..\\build\\Debugx64\\dxgi.lib")
+#else
+#pragma comment (lib, "..\\build\\DebugWin32\\dxgi.lib")
+#endif
+#else
+#if (defined(_AMD64_))
+#pragma comment (lib, "..\\build\\Releasex64\\dxgi.lib")
+#else
+#pragma comment (lib, "..\\build\\ReleaseWin32\\dxgi.lib")
+#endif
+#endif
+
 WINE_DEFAULT_DEBUG_CHANNEL(d3d11);
 
 static const char *debug_d3d_driver_type(D3D_DRIVER_TYPE driver_type)

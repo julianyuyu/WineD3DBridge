@@ -23,7 +23,9 @@ Snapshot
 
 Known issues
 ------------
-- dx5-8, dx10 and later not supported for now
+- dx5-8 apps are not supported for now
+- dx9 require mesa3d for now. please download from mesa3d.org and generate opengl32.dll.
+- for dx11 app, only D3D_FEATURE_LEVEL_10_0 is supported.
 
 Thanks and more
 ---------------
